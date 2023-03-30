@@ -15,7 +15,7 @@ public class Pokemon{
     protected Boolean legendary;
     
     
-    
+     
     @Override
     public String toString() {
         return number + "," + name + "," + typeOne + "," + typeTwo
@@ -24,6 +24,16 @@ public class Pokemon{
                 + "," + legendary;
     }
 
+    
+
+    /* 
+    @Override
+    public String toString() {
+        return "Pokemon [number=" + number + ", name=" + name + ", typeOne=" + typeOne + ", typeTwo=" + typeTwo
+                + ", total=" + total + ", hp=" + hp + ", attack=" + attack + ", defense=" + defense + ", spAttack="
+                + spAttack + ", spDefense=" + spDefense + ", speed=" + speed + ", generation=" + generation
+                + ", legendary=" + legendary + "]";
+    }*/
 
 
     public Pokemon(Integer number, String name, String typeOne, String typeTwo, Integer total, Integer hp,

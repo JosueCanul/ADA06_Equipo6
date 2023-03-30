@@ -1,16 +1,15 @@
 package data;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 import model.Pokemon;
-import model.comparators.PokemonAttack;
+
 
 public class DataReader {
 
-    private String direction = "pokemon.csv";
+    private String direction = "csvs/pokemon.csv";
 
     private boolean readFile(String path) {
         File file = new File(path);
@@ -51,6 +50,7 @@ public class DataReader {
 
             listManga.add(pokemon);
         }
+        scannerCycleDimensions.close();
         
         return listManga;
     }
