@@ -1,8 +1,11 @@
 package algorithms;
 
+import java.lang.reflect.Array;
 import java.util.LinkedList;
 
-public class MergeSort<E extends Comparable<E>>{
+import model.Pokemon;
+
+public class MergeSort<E>{
    private LinkedList<E> theArray;          // ref to array theArray
    private int nElems;               // number of data items
 
@@ -24,57 +27,59 @@ public class MergeSort<E extends Comparable<E>>{
    private void setTime(){
       this.finalTime = this.endTime - this.startTime;
    }
-   public void mergeSort() {
+
+   public void mergeSort(int forma) {
       startTime = System.nanoTime();
-      E[] workSpace = (E[]) new Comparable[nElems];
-      recMergeSort(workSpace, 0, nElems-1);
+      Pokemon[] workSpace = new Pokemon[nElems];
+      recMergeSort(workSpace, 0, nElems-1, forma);
       finalTime = System.nanoTime();
       setTime();
    }
 
-   private void recMergeSort(E[] workSpace, int lowerBound, int upperBound){
+   private void recMergeSort(Pokemon[] workSpace, int lowerBound, int upperBound, int forma){
       if(lowerBound == upperBound)            // if range is 1,
          return;                              // no use sorting
       else {                                    
          int mid = (lowerBound+upperBound) / 2; // find midpoint        
-         recMergeSort(workSpace, lowerBound, mid); // sort low half
-         recMergeSort(workSpace, mid+1, upperBound); // sort high half
-         merge(workSpace, lowerBound, mid+1, upperBound); // merge them
+         recMergeSort(workSpace, lowerBound, mid, forma); // sort low half
+         recMergeSort(workSpace, mid+1, upperBound, forma); // sort high half
+         merge(workSpace, lowerBound, mid+1, upperBound, forma); // merge them
       }  // end else
    }  // end recMergeSort()
 
-   private void merge(E[] workSpace, int lowPtr, int highPtr, int upperBound) {
+   private void merge(Pokemon[] workSpace, int lowPtr, int highPtr, int upperBound, int forma) {
       int j = 0;                             // workspace index
       int lowerBound = lowPtr;
       int mid = highPtr-1;
       int n = upperBound-lowerBound+1;       // # of items
 
-      while(lowPtr <= mid && highPtr <= upperBound)
-         if(theArray.get(lowPtr).compareTo(theArray.get(highPtr)) == 1){
-            workSpace[j++] = theArray.get(lowPtr++);
+      while(lowPtr <= mid && highPtr <= upperBound){
+         Pokemon pokemon = (Pokemon) theArray.get(lowPtr);
+         if(pokemon.compare((Pokemon)theArray.get(highPtr), forma) == 1){
+            workSpace[j++] = (Pokemon) theArray.get(lowPtr++);
             this.swaps++;
             this.comparations++;
          }else{
-            workSpace[j++] = theArray.get(highPtr++);
+            workSpace[j++] = (Pokemon) theArray.get(highPtr++);
             this.swaps++;
             this.comparations++;
          }
             
-
+      }
       while(lowPtr <= mid){
-         workSpace[j++] = theArray.get(lowPtr++);
+         workSpace[j++] = (Pokemon) theArray.get(lowPtr++);
          this.swaps++;
       }
          
 
       while(highPtr <= upperBound){
-         workSpace[j++] = theArray.get(highPtr++);
+         workSpace[j++] = (Pokemon) theArray.get(highPtr++);
          this.swaps++;
       }
          
 
       for(j=0; j<n; j++){
-         theArray.set(lowerBound+j, workSpace[j]);
+         theArray.set(lowerBound+j, (E) workSpace[j]);
          this.swaps++;
       }
       

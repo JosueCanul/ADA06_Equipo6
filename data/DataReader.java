@@ -9,7 +9,7 @@ import model.Pokemon;
 
 public class DataReader {
 
-    private String direction = "csvs/pokemon.csv";
+    private String direction = "files/csvs/pokemon.csv";
 
     private boolean readFile(String path) {
         File file = new File(path);
@@ -38,7 +38,7 @@ public class DataReader {
 
         Scanner scannerCycleDimensions = openFile();
         
-        LinkedList<Pokemon> listManga = new LinkedList<>();
+        LinkedList<Pokemon> listPokemons = new LinkedList<>();
 
         while(scannerCycleDimensions.hasNext()){
             String[] data = scannerCycleDimensions.nextLine().split(",");
@@ -48,11 +48,11 @@ public class DataReader {
             Integer.valueOf(data[7]), Integer.valueOf(data[8]), Integer.valueOf(data[9]), 
             Integer.valueOf(data[10]), Integer.valueOf(data[11]), Boolean.valueOf(data[12]));
 
-            listManga.add(pokemon);
+            listPokemons.add(pokemon);
         }
         scannerCycleDimensions.close();
         
-        return listManga;
+        return listPokemons;
     }
     
     

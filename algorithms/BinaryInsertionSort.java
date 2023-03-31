@@ -2,7 +2,9 @@ package algorithms;
 
 import java.util.LinkedList;
 
-public class BinaryInsertionSort<E extends Comparable<E>> {
+import model.Pokemon;
+
+public class BinaryInsertionSort<E> {
 
     private LinkedList<E> list;
     private long startTime;
@@ -24,14 +26,15 @@ public class BinaryInsertionSort<E extends Comparable<E>> {
     }
 
     //  implementacion iterativa 
-    public int binarySearch(E item, int low, int high){
+    public int binarySearch(E item, int low, int high, int forma){
+        Pokemon pokemon = (Pokemon) item;
         this.startTime = System.nanoTime();
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            if (item.compareTo(list.get(mid)) == 0){
+            if (pokemon.compare((Pokemon)list.get(mid), forma) == 0){
                 this.comparations++;
                 return mid + 1;
-            }else if (item.compareTo(list.get(mid)) == 1){
+            }else if (pokemon.compare((Pokemon)list.get(mid), forma) == 1){
                 low = mid + 1;
                 this.comparations++;
             }else{
@@ -45,7 +48,7 @@ public class BinaryInsertionSort<E extends Comparable<E>> {
         return low;
     }
 
-    public LinkedList<E> binaryInsertionSort() {
+    public LinkedList<E> binaryInsertionSort(int forma) {
         int length = list.size();
         int i, loc, j;
         E selected;
@@ -55,7 +58,7 @@ public class BinaryInsertionSort<E extends Comparable<E>> {
             selected = list.get(i);
     
             // encuentra la posicion donde debe ser insertado el elemento
-            loc = binarySearch(selected, 0, j);
+            loc = binarySearch(selected, 0, j, forma);
     
             // Hace un corrimiento a la derecha de los datos
             while (j >= loc) {

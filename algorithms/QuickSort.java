@@ -2,7 +2,9 @@ package algorithms;
 
 import java.util.LinkedList;
 
-public class QuickSort <E extends Comparable<E>>{
+import model.Pokemon;
+
+public class QuickSort <E>{
     private LinkedList<E> list; 
     private long startTime;
     private long endTime;
@@ -40,9 +42,9 @@ public class QuickSort <E extends Comparable<E>>{
     a la izquierda del pivote y coloca todos los valores mas grandes 
     (mayores a los pivotes) a la derecha del pivote 
     */
-    int partition(int low, int high){
+    int partition(int low, int high, int forma){
         
-        E pivot = list.get(high);
+        Pokemon pivot = (Pokemon) list.get(high);
         
         // Index of smaller element and
         // indicates the right position
@@ -52,7 +54,8 @@ public class QuickSort <E extends Comparable<E>>{
         for(int j = low; j <= high - 1; j++){
             // If current element is smaller
             // than the pivot
-            if (list.get(j).compareTo(pivot) == 1){
+            Pokemon pokemon = (Pokemon) list.get(j);
+            if (pokemon.compare(pivot,forma) == 1){
                 this.comparations++;
                 // Increment index of
                 // smaller element
@@ -72,17 +75,17 @@ public class QuickSort <E extends Comparable<E>>{
             high --> Ending index
     */
     //Primera vuelta va a ser 0 y list.sice
-    public void recQSort(int low, int high){
+    public void recQSort(int low, int high, int forma){
         this.startTime = System.nanoTime();
         if (low < high){
             // pi is partitioning index, arr[p]
             // is now at right place
-            int pi = partition(low, high);
+            int pi = partition(low, high, forma);
     
             // Separately sort elements before
             // partition and after partition
-            recQSort(low, pi - 1);
-            recQSort(pi + 1, high);
+            recQSort(low, pi - 1, forma);
+            recQSort(pi + 1, high, forma);
         }
         this.endTime = System.nanoTime();
         setTime();

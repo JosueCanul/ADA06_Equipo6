@@ -3,9 +3,10 @@ package algorithms;
 
 import java.util.*;
 
+import model.Pokemon;
 import model.PokemonInterfaceRadix;
 
-public class RadixSort <E extends PokemonInterfaceRadix & Comparable<E> >{
+public class RadixSort <E extends PokemonInterfaceRadix>{
     private LinkedList<E> theArray;          // ref to array theArray
     private int nElems;               // number of data items
 	private long startTime;
@@ -28,23 +29,25 @@ public class RadixSort <E extends PokemonInterfaceRadix & Comparable<E> >{
         this.finalTime = this.endTime - this.startTime;
     }
 	// A utility function to get maximum value in arr[]
-	private E getMax(){
+	private E getMax(int forma){
 		E mx = this.theArray.get(0);
 		
-		for (int i = 1; i < nElems; i++)
-			if (this.theArray.get(i).compareTo(mx) == -1){
+		for (int i = 1; i < nElems; i++){
+			Pokemon pokemon = (Pokemon) this.theArray.get(i);
+
+			if (pokemon.compare((Pokemon) mx, forma) == -1){
 				mx = this.theArray.get(i);
 				this.comparations++;
 			}
 
-				
+		}		
 		return mx;
 	}
 	//----------------------------Hecho
 
 	// A function to do counting sort of arr[] according to
 	// the digit represented by exp.
-	public void countSort(LinkedList<E> list, int exp){
+	public void countSort(LinkedList<E> list, int exp, int forma){
 		LinkedList<E> output = new LinkedList<>(list); // output array
 		int i;
 		long[] count = new long[10];
@@ -52,7 +55,7 @@ public class RadixSort <E extends PokemonInterfaceRadix & Comparable<E> >{
 
 		// Store count of occurrences in count[]
 		for (i = 0; i < nElems; i++)
-			count[(int) ((theArray.get(i).getValueForRadix() / exp) % 10)]++;
+			count[(int) ((theArray.get(i).getValueForRadix(forma) / exp) % 10)]++;
 
 		// Change count[i] so that count[i] now contains
 		// actual position of this digit in output[]
@@ -63,9 +66,9 @@ public class RadixSort <E extends PokemonInterfaceRadix & Comparable<E> >{
 		for (i = nElems - 1; i >= 0; i--) {
 			
 			//output[(int) (count[(int) ((theArray.get(i).getValueForRadix() / exp) % 10)] - 1)] = theArray[i];
-			output.set((int) (count[(int) ((theArray.get(i).getValueForRadix() / exp) % 10)] - 1), theArray.get(i));
+			output.set((int) (count[(int) ((theArray.get(i).getValueForRadix(forma) / exp) % 10)] - 1), theArray.get(i));
 			this.swaps++;
-			count[(int) ((theArray.get(i).getValueForRadix() / exp) % 10)]--;
+			count[(int) ((theArray.get(i).getValueForRadix(forma) / exp) % 10)]--;
 		}
 
 		// Copy the output array to arr[], so that arr[] now
@@ -77,16 +80,16 @@ public class RadixSort <E extends PokemonInterfaceRadix & Comparable<E> >{
 
 	// The main function to that sorts arr[] of size n using
 	// Radix Sort
-	public void sort(){
+	public void sort(int forma){
 		startTime = System.nanoTime();
 		// Find the maximum number to know number of digits
-		E m = getMax();
+		E m = getMax(forma);
 
 		// Do counting sort for every digit. Note that
 		// instead of passing digit number, exp is passed.
 		// exp is 10^i where i is current digit number
-		for (int exp = 1; m.getValueForRadix() / exp > 0; exp *= 10){
-			countSort(this.theArray, exp);
+		for (int exp = 1; m.getValueForRadix(forma) / exp > 0; exp *= 10){
+			countSort(this.theArray, exp, forma);
 		}
 		finalTime = System.nanoTime();
 		setTime();

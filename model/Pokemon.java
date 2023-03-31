@@ -1,5 +1,9 @@
 package model;
-public class Pokemon{
+/**
+ * Objeto de tipo pokemon para almacenar los datos de la tabla y posteriormente ser revisados
+ * @author Josue Canul
+ */
+public class Pokemon implements PokemonInterfaceRadix{
     protected Integer number; 
     protected String name;
     protected String typeOne;
@@ -23,18 +27,6 @@ public class Pokemon{
                 + spAttack + "," + spDefense + "," + speed + "," + generation
                 + "," + legendary;
     }
-
-    
-
-    /* 
-    @Override
-    public String toString() {
-        return "Pokemon [number=" + number + ", name=" + name + ", typeOne=" + typeOne + ", typeTwo=" + typeTwo
-                + ", total=" + total + ", hp=" + hp + ", attack=" + attack + ", defense=" + defense + ", spAttack="
-                + spAttack + ", spDefense=" + spDefense + ", speed=" + speed + ", generation=" + generation
-                + ", legendary=" + legendary + "]";
-    }*/
-
 
     public Pokemon(Integer number, String name, String typeOne, String typeTwo, Integer total, Integer hp,
             Integer attack, Integer defense, Integer spAttack, Integer spDefense, Integer speed, Integer generation,
@@ -138,5 +130,63 @@ public class Pokemon{
         this.legendary = legendary;
     }
 
-    
+    /**
+     * Metodo utiizado para identificar si el numero en el apatado de ataque 
+     * o el nombre, es mayor o menor al objeto co el que se esta comparando
+     * @param pokemon Objeto utilizado para comparar
+     * @param forma la forma en la que se desea comparar proporcionada desde
+     * la User Interface
+     * @return Dependiendo de la forma es el resultado, si el parametro de 
+     * forma es igual a {@code 1} retornara {@code 1} si el ataque del pokemon
+     * actual es menor al pokemon a comparar y retornara {@code -1} si es al 
+     * reves. Ocurre al reves si el parametro {@code forma} es {@code 2}, 
+     * retornara {@code -1} si el ataque del pokemon actual es menor al ataque 
+     * del pokemon a comparar y {@code 1} si es al reves. De manera analoga 
+     * ocurre cuando {@code forma} es igual a {@code 3} retornando {@code 1} y
+     * {@code -1} dependiendo del resultado de la comparacion y lo mismo ocurre
+     * en el caso de la opcion {@code 4}. Tambien retorna {@code 0} en caso de 
+     * que en cualquiera de todos los casos el numero o el nombre sean iguales.
+     * @see ui.UserInterface.
+     */
+    public int compare(Pokemon pokemon, int forma){
+        int result = 0;
+        if (forma == 1) {
+            if(this.getAttack() < pokemon.getAttack()){
+                result = 1;
+            }else if(this.getAttack() > pokemon.getAttack()){
+                result = -1;
+            }
+        } else if (forma == 2){
+            if(this.getAttack() > pokemon.getAttack()){
+                result = 1;
+            }else if(this.getAttack() < pokemon.getAttack()){
+                result = -1;
+            }
+        } else if (forma == 3) {
+            if(this.name.compareToIgnoreCase(pokemon.getName()) > 0){
+                result = 1;
+            }else if(this.name.compareToIgnoreCase(pokemon.getName()) < 0){
+                result = -1;
+            }
+        } else {
+            if(this.name.compareToIgnoreCase(pokemon.getName()) < 0){
+                result = 1;
+            }else if(this.name.compareToIgnoreCase(pokemon.getName()) > 0){
+                result = -1;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Integer getValueForRadix(int forma) {
+        int returnedData;
+        if (forma == 1 || forma == 2) {
+            returnedData = attack;
+        } else {
+            char[] values = this.name.toCharArray();
+            returnedData = (int) values[0];
+        }
+        return returnedData;
+    }
 }
