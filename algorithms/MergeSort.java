@@ -1,30 +1,38 @@
 package algorithms;
-public class MergeSort{
-   private long[] theArray;          // ref to array theArray
+
+import java.util.LinkedList;
+
+public class MergeSort<E extends Comparable<E>>{
+   private LinkedList<E> theArray;          // ref to array theArray
    private int nElems;               // number of data items
 
-   public MergeSort(int max)   {
-      theArray = new long[max];      // create array
-      nElems = 0;
-   }
-   
-   public void insert(long value){
-      theArray[nElems] = value;      // insert it
-      nElems++;                      // increment size
+   private long startTime;
+   private long endTime;
+   private long finalTime;
+   private long comparations;
+   private long swaps;
+
+   public MergeSort(LinkedList<E> list)   {
+      theArray = list;      // create array
+      nElems = this.theArray.size();
+      this.startTime = 0;
+      this.endTime = 0;
+      this.swaps = 0;
+      this.comparations = 0;
    }
 
-   public void display() {
-      for(int j=0; j<nElems; j++)    // for each element,
-         System.out.print(theArray[j] + " ");  // display it
-      System.out.println("");
+   private void setTime(){
+      this.finalTime = this.endTime - this.startTime;
    }
-
    public void mergeSort() {
-      long[] workSpace = new long[nElems];
+      startTime = System.nanoTime();
+      E[] workSpace = (E[]) new Comparable[nElems];
       recMergeSort(workSpace, 0, nElems-1);
+      finalTime = System.nanoTime();
+      setTime();
    }
 
-   private void recMergeSort(long[] workSpace, int lowerBound, int upperBound){
+   private void recMergeSort(E[] workSpace, int lowerBound, int upperBound){
       if(lowerBound == upperBound)            // if range is 1,
          return;                              // no use sorting
       else {                                    
@@ -35,25 +43,50 @@ public class MergeSort{
       }  // end else
    }  // end recMergeSort()
 
-   private void merge(long[] workSpace, int lowPtr, int highPtr, int upperBound) {
+   private void merge(E[] workSpace, int lowPtr, int highPtr, int upperBound) {
       int j = 0;                             // workspace index
       int lowerBound = lowPtr;
       int mid = highPtr-1;
       int n = upperBound-lowerBound+1;       // # of items
 
       while(lowPtr <= mid && highPtr <= upperBound)
-         if( theArray[lowPtr] < theArray[highPtr] )
-            workSpace[j++] = theArray[lowPtr++];
-         else
-            workSpace[j++] = theArray[highPtr++];
+         if(theArray.get(lowPtr).compareTo(theArray.get(highPtr)) == 1){
+            workSpace[j++] = theArray.get(lowPtr++);
+            this.swaps++;
+            this.comparations++;
+         }else{
+            workSpace[j++] = theArray.get(highPtr++);
+            this.swaps++;
+            this.comparations++;
+         }
+            
 
-      while(lowPtr <= mid)
-         workSpace[j++] = theArray[lowPtr++];
+      while(lowPtr <= mid){
+         workSpace[j++] = theArray.get(lowPtr++);
+         this.swaps++;
+      }
+         
 
-      while(highPtr <= upperBound)
-         workSpace[j++] = theArray[highPtr++];
+      while(highPtr <= upperBound){
+         workSpace[j++] = theArray.get(highPtr++);
+         this.swaps++;
+      }
+         
 
-      for(j=0; j<n; j++)
-         theArray[lowerBound+j] = workSpace[j];
+      for(j=0; j<n; j++){
+         theArray.set(lowerBound+j, workSpace[j]);
+         this.swaps++;
+      }
+      
    }
+
+   public LinkedList<E> getList(){
+      return theArray;
+   }
+
+   @Override
+   public String toString() {
+      return "MergeSort [finalTime=" + finalTime + ", comparations=" + comparations + ", swaps=" + swaps + "]";
+   }
+   
 }

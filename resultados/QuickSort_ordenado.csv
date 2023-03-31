@@ -1,4 +1,4 @@
-QuickSort [startTime=944333638809700, endTime=944333638810300, finalTime=600, comparations=3964, swaps=4686]
+QuickSort [finalTime=300, comparations=3964, swaps=4686]
 #,Name,Type_1,Type 2,Total,HP,Attack,Defense,Sp.Atk,Sp.Def,Speed,Generation,Legendary438,Bonsly,Rock,,290,50,10,95,10,45,10,4,false
 213,Shuckle,Bug,Rock,505,20,10,230,10,230,5,2,false
 349,Feebas,Water,,200,20,10,20,10,55,80,3,false

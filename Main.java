@@ -23,10 +23,10 @@ public class Main {
                 Block.QuickBlock(forma);
             }else if(algoritmo == 3){
                 forma = Integer.valueOf(scanner.nextInt());
-                Block.BinaryBlock(forma);
+                Block.MergeBlock(forma);
             }else if(algoritmo == 4){
                 forma = Integer.valueOf(scanner.nextInt());
-                Block.BinaryBlock(forma);
+                Block.RadixBlock(forma);
             }else{
                 System.out.println("opción no encontrada");
             }

@@ -94,9 +94,7 @@ public class QuickSort <E extends Comparable<E>>{
 
     @Override
     public String toString() {
-        return "QuickSort [startTime=" + startTime + ", endTime=" + endTime + ", finalTime=" + finalTime
-                + ", comparations=" + comparations + ", swaps=" + swaps + "]";
+        return "QuickSort [finalTime=" + finalTime + ", comparations=" + comparations + ", swaps=" + swaps + "]";
     }
-
     
 }

@@ -1,8 +1,9 @@
 package model.comparators;
 
 import model.Pokemon;
+import model.PokemonInterfaceRadix;
 
-public class PokemonName extends Pokemon implements Comparable<PokemonName> {
+public class PokemonName extends Pokemon implements Comparable<PokemonName>, PokemonInterfaceRadix {
     
      public PokemonName(Integer number, String name, String typeOne, String typeTwo, Integer total, Integer hp,
             Integer attack, Integer defense, Integer spAttack, Integer spDefense, Integer speed, Integer generation,
@@ -19,5 +20,10 @@ public class PokemonName extends Pokemon implements Comparable<PokemonName> {
         }else{
             return 0;
         }
+    }
+    @Override
+    public Integer getValueForRadix() {
+        char[] values = this.name.toCharArray();
+        return (int) values[0];
     }
 }
