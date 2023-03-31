@@ -12,7 +12,8 @@ public class BinaryInsertionSort<E> {
     private long finalTime;
     private long comparations;
     private long swaps;
-
+     
+    //Metodo por el cual se calcula el tiempo total de la ejecución del algoritmo 
     private void setTime(){
         this.finalTime = this.endTime - this.startTime;
     }
@@ -25,8 +26,8 @@ public class BinaryInsertionSort<E> {
             this.comparations = 0;
     }
 
-    //  implementacion iterativa 
-    public int binarySearch(E item, int low, int high, int forma){
+    //  este método busca la posición  en la cual el valor a poner se insertara a la lista
+    private int binarySearch(E item, int low, int high, int forma){
         Pokemon pokemon = (Pokemon) item;
         this.startTime = System.nanoTime();
         while (low <= high) {
@@ -48,6 +49,9 @@ public class BinaryInsertionSort<E> {
         return low;
     }
 
+    /*
+     * Implementación del algoritmo binarysort devuelve la lista ya ordenada que se la pasa como parametro
+     */
     public LinkedList<E> binaryInsertionSort(int forma) {
         int length = list.size();
         int i, loc, j;
@@ -73,11 +77,16 @@ public class BinaryInsertionSort<E> {
         return this.list;
     }
 
+    //Imprime los valores de cada elemento de la lista por medio del toString
     public void printArray() {
         for(E e: list){
             System.out.println(e.toString());
         }
     }
+
+      /*
+     * Imprime los atributos que el algoritmo 
+     */
 
     @Override
     public String toString() {

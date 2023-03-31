@@ -42,7 +42,7 @@ public class QuickSort <E>{
     a la izquierda del pivote y coloca todos los valores mas grandes 
     (mayores a los pivotes) a la derecha del pivote 
     */
-    int partition(int low, int high, int forma){
+    private int partition(int low, int high, int forma){
         
         Pokemon pivot = (Pokemon) list.get(high);
         
@@ -69,10 +69,7 @@ public class QuickSort <E>{
         return (i + 1);
     }
     
-    /* The main function that implements QuickSort
-            arr[] --> Array to be sorted,
-            low --> Starting index,
-            high --> Ending index
+    /* Función principal que implementa QuickSort
     */
     //Primera vuelta va a ser 0 y list.sice
     public void recQSort(int low, int high, int forma){
@@ -91,9 +88,14 @@ public class QuickSort <E>{
         setTime();
     }
 
+    /* Devuelve la lista ya ordenada que se le paso como parametro */
     public LinkedList<E> geList(){
         return this.list;
     }
+
+    /*
+     * Imprime los atributos que el algoritmo 
+     */
 
     @Override
     public String toString() {

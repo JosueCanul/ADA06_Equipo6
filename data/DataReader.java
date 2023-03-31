@@ -17,6 +17,11 @@ public class DataReader {
             this.direction = path;
         return file.canRead();
     }
+    /**
+     * Habré el archivo csv siendo que maneja la exepción del que no se pueda abrir,
+     * solo se utiliza para el metodo getRecords
+     * @return
+     */
     
     private Scanner openFile(){
         Scanner scanner = null;
@@ -31,7 +36,10 @@ public class DataReader {
         }
         return scanner;
     }
-
+    /***
+     * En este metodo se recuperan los datos del csv mediante un scanner
+     * @return LinkedList de los datos del csv
+    */
     public LinkedList<Pokemon> getRecords(){
         
         

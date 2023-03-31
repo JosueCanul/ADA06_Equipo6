@@ -24,10 +24,16 @@ public class MergeSort<E>{
       this.comparations = 0;
    }
 
+   /*
+    * Metodo que establece el tiempo final que le tomo al algoritmo ordenar la lista enlazada
+    */
    private void setTime(){
       this.finalTime = this.endTime - this.startTime;
    }
 
+   /*
+    * Metodo que implementa el ordenamiento MergeSort
+    */
    public void mergeSort(int forma) {
       startTime = System.nanoTime();
       Pokemon[] workSpace = new Pokemon[nElems];
@@ -36,6 +42,10 @@ public class MergeSort<E>{
       setTime();
    }
 
+   /*
+    * Implementa de manera recursiva el ordenamiento merge, cortando el arreglo a la mitad y 
+    llamandose de manera recursiva, fucionandolas en el proceso.
+    */
    private void recMergeSort(Pokemon[] workSpace, int lowerBound, int upperBound, int forma){
       if(lowerBound == upperBound)            // if range is 1,
          return;                              // no use sorting
@@ -47,6 +57,11 @@ public class MergeSort<E>{
       }  // end else
    }  // end recMergeSort()
 
+   /*
+    * Este metodo compara dos subarreglos que anteriormente han sido ordenados
+    coiandose sus elementos a un arreglo temporal, posteriormente copia los elementos del arreglo temparal
+    al arreglo original. 
+    */
    private void merge(Pokemon[] workSpace, int lowPtr, int highPtr, int upperBound, int forma) {
       int j = 0;                             // workspace index
       int lowerBound = lowPtr;
@@ -85,9 +100,16 @@ public class MergeSort<E>{
       
    }
 
+   /*
+    * Retorna la lista ordenada
+    */
    public LinkedList<E> getList(){
       return theArray;
    }
+     /*
+     * Imprime los atributos que el algoritmo 
+     */
+
 
    @Override
    public String toString() {
