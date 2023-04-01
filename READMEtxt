@@ -1,0 +1,7 @@
+1.- Primero clonamos el repo con:
+git clone https://github.com/JosueCanul/ADA06_Equipo6.git
+
+2.- una vez clonado nos dirigimos a la carpeta creada
+3.- Corremos el comando javac ADA06_Equipo6/*.java
+4.- una vez compilado corremos el comando java ADA06_Equipo6/Main
+5.- LISTO!
