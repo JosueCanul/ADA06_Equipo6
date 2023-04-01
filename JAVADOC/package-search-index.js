@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"ADA06_Equipo6"},{"l":"ADA06_Equipo6.algorithms"},{"l":"ADA06_Equipo6.data"},{"l":"ADA06_Equipo6.model"},{"l":"ADA06_Equipo6.ui"},{"l":"All Packages","u":"allpackages-index.html"}];updateSearchResults();
