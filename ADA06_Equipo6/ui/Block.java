@@ -25,7 +25,7 @@ public class Block {
      */
     public static void BinaryBlock(int forma){
         BinaryInsertionSort<?> binaryInsertionSort = new BinaryInsertionSort<>(dataReader.getRecords());
-        DataWrite dataWrite = new DataWrite("../files/resultados/BinaryInsertionSort_ordenado.csv");
+        DataWrite dataWrite = new DataWrite("./files/resultados/BinaryInsertionSort_ordenado.csv");
 
         dataWrite.setDataCsv(binaryInsertionSort.binaryInsertionSort(forma), binaryInsertionSort.toString());
     }
@@ -40,7 +40,7 @@ public class Block {
      */
     public static void QuickBlock(int forma){
         QuickSort<?> quickSort = new QuickSort<>(dataReader.getRecords());
-        DataWrite dataWrite = new DataWrite("../files/resultados/QuickSort_ordenado.csv");
+        DataWrite dataWrite = new DataWrite("./files/resultados/QuickSort_ordenado.csv");
 
         quickSort.recQSort(0, quickSort.getSize()-1, forma);
         dataWrite.setDataCsv(quickSort.geList(), quickSort.toString());
@@ -56,7 +56,7 @@ public class Block {
      */
     public static void RadixBlock(int forma){
         RadixSort<?> radixSort = new RadixSort<>(dataReader.getRecords());
-        DataWrite dataWrite = new DataWrite("../files/resultados/RadixSort_ordenado.csv");
+        DataWrite dataWrite = new DataWrite("./files/resultados/RadixSort_ordenado.csv");
         radixSort.sort(forma);
         dataWrite.setDataCsv(radixSort.getList(), radixSort.toString());
     }
@@ -71,7 +71,7 @@ public class Block {
      */
     public static void MergeBlock(int forma){
         MergeSort<?> mergeSort = new MergeSort<>(dataReader.getRecords());
-        DataWrite dataWrite = new DataWrite("../files/resultados/MergeSort_ordenado.csv");
+        DataWrite dataWrite = new DataWrite("./files/resultados/MergeSort_ordenado.csv");
         mergeSort.mergeSort(forma);
         dataWrite.setDataCsv(mergeSort.getList(), mergeSort.toString());
     }

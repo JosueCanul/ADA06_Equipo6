@@ -9,7 +9,7 @@ import ADA06_Equipo6.model.Pokemon;
 
 public class DataReader {
 
-    private String direction = "../files/csvs/pokemon.csv";
+    private String direction = "./files/csvs/pokemon.csv";
 
     private boolean readFile(String path) {
         File file = new File(path);
